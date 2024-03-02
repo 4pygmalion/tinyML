@@ -25,6 +25,7 @@ def build_model():
     return model
 
 if __name__ == "__main__":
+    DIR = os.path.dirname(os.path.abspath(__file__))
     xs, ys = create_data(1000)
     train_x, test_x, train_y, test_y = train_test_split(xs, ys)
     train_x, val_x, train_y, val_y = train_test_split(train_x, train_y)
@@ -49,13 +50,14 @@ if __name__ == "__main__":
     tflite_model = converter.convert()  # serialized
     
     # write
-    open("sine_model_quantized.tflite", "wb").write(tflite_model) # binary 작성합니다.
-    quantized_model_size = os.path.getsize("sine_model_quantized.tflite")
+    open(os.path.join(DIR, "sine_model_quantized.tflite"), "wb").write(tflite_model) # binary 작성합니다.
+    quantized_model_size = os.path.getsize(os.path.join(DIR, "sine_model_quantized.tflite"))
     print("Quantized model is %d bytes" % quantized_model_size)
     
     # binary to \0x (16bit)
-    subprocess.run("xxd -i sine_model_quantized.tflite > sine_model_quantized.cc", shell=True)
-    print("save at sine_model_quantized.cc")
+    output_dir = os.path.join(DIR, "sine_model_quantized.cc")
+    subprocess.run(f"xxd -i sine_model_quantized.tflite > {output_dir}", shell=True)
+    print(f"save at {output_dir}")
     
     
     
