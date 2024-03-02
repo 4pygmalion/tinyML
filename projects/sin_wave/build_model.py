@@ -50,13 +50,14 @@ if __name__ == "__main__":
     tflite_model = converter.convert()  # serialized
     
     # write
-    open(os.path.join(DIR, "sine_model_quantized.tflite"), "wb").write(tflite_model) # binary 작성합니다.
-    quantized_model_size = os.path.getsize(os.path.join(DIR, "sine_model_quantized.tflite"))
+    tfile_output = os.path.join(DIR, "sine_model_quantized.tflite")
+    open(tfile_output, "wb").write(tflite_model) # binary 작성합니다.
+    quantized_model_size = os.path.getsize(tfile_output)
     print("Quantized model is %d bytes" % quantized_model_size)
     
     # binary to \0x (16bit)
     output_dir = os.path.join(DIR, "sine_model_quantized.cc")
-    subprocess.run(f"xxd -i sine_model_quantized.tflite > {output_dir}", shell=True)
+    subprocess.run(f"xxd -i {tfile_output} > {output_dir}", shell=True)
     print(f"save at {output_dir}")
     
     
