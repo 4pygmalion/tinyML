@@ -31,3 +31,14 @@ Arduino tinyML
 - 예를 들어, 빌트인LED(BUILT_IN LED)은 13번 핀을 의미합니다.
 - P1.13과 같이 이런 핀은 논리적으로 PIN을 그룹화한것을 의미합니다.
 예제)![pinmap](/images/pinmap.png)
+
+
+### Contents
+```
+C:.
+├─.vscode
+├─images
+└─projects
+    ├─ledblink  : LED PIN 입출력 예제
+    └─sin_wave  : 사인파 예측 예제
+```
