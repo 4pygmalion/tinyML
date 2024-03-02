@@ -24,6 +24,8 @@ Arduino tinyML
 - Select environment including Arduino device and port
 ![env](/images/environ.png)
 
+### 주의
+- Arduino tensorflow fruit(?) 은 현재 지원 안한다고 함(https://forum.arduino.cc/t/is-tensorflowlite-h-not-available-anymore/1029022/4)
 
 ### PinMap
 - 핀맵(PinMap)을 회로내 장치가 몇 번 핀에 연결되어있는지 확인할 수 있는 지도이다.
